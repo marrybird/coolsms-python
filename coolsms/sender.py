@@ -21,7 +21,7 @@ class Sender(object):
         timestamp = int(time.time())
         salt = str(uuid.uuid4())
         data = str(timestamp) + salt
-        hash = hmac.new(self._secret, data, hashlib.md5)
+        hash = hmac.new(self._secret.encode(), data.encode(), hashlib.md5)
 
         return timestamp, salt, hash.hexdigest()
 
